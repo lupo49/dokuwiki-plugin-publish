@@ -91,6 +91,7 @@ class action_plugin_publish extends DokuWiki_Action_Plugin {
         global $REV;
         global $INFO;
 
+        if($this->getConf('hideanonymous') && is_null($_SERVER['REMOTE_USER'])) return;
         if(!$this->hlp->in_namespace($this->getConf('apr_namespaces'), $ID)) return;
         if($event->data != 'show') return true;
         if(!$INFO['exists']) return true;
